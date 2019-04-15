@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////./app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./app.db'
 db = SQLAlchemy(app)
 
 class questions(db.Model):
@@ -60,6 +60,29 @@ def check():
     a = json.dumps(res)
     return jsonify(a)
 
+@app.route('/addques', methods=['POST'])
+def addques():
+    ques = request.form['ques']
+    cno = int(request.form['cno'])
+    op1 = request.form['op1']
+    op2 = request.form['op2']
+    op3 = request.form['op3']
+    op4 = request.form['op4']
+    db.create_all()
+    new_ques = questions(ques,cno,op1,op2,op3,op4)
+    db.session.add(new_ques)
+    db.session.commit()
+    b = {
+            'ques' : new_ques.ques,
+            'cno' : new_ques.cno,
+            'op1' : new_ques.op1,
+            'op2' : new_ques.op2,
+            'op3' : new_ques.op3,
+            'op4' : new_ques.op4
+    }
+    b = json.dumps(b)
+    # status = type(new_ques) == questions
+    return jsonify(b)
 
 @app.route('/')
 def intro():
