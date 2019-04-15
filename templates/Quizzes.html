@@ -271,7 +271,7 @@
 				data = $.parseJSON(data);
 				for (i in data) {
 					console.log(data[i]['ques']);
-					$('#quiz_ques').append('<h4>' + data[i]['ques'] + '</h4>');
+					$('#quiz_ques').append('<h4>' + (parseInt(i) + 1) +  ". " + data[i]['ques'] + '</h4>');
 					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="1" checked>  ' + data[i]['op1'] + ' </br> ');
 					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="2">  ' + data[i]['op2'] + ' </br> ');
 					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="3">  ' + data[i]['op3'] + ' </br> ');
