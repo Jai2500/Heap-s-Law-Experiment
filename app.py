@@ -44,21 +44,29 @@ def getques():
     b = json.dumps(a)
     return jsonify(b)
 
-@app.route('/checkans', methods=['POST'])
+@app.route('/checkans', methods=['GET','POST'])
 def check():
     db.create_all()
-    all_ques = questions.query(questions.cno)
+    all_ques = questions.query.all()
     ans = []
     for i in range(len(all_ques)):
         ans.append(int(request.form['ans' + str(i)]))
     res = {}
     for i in range(len(all_ques)):
-        if ans[i] == all_ques[i]:
-            res[str(i)]  = True
+        if ans[i] == all_ques[i].cno:
+            res[all_ques[i].ques] = [True]
         else:
-            res[str(i)] = False
-    a = json.dumps(res)
-    return jsonify(a)
+            res[all_ques[i].ques] = [False]
+    for i in range(len(all_ques)):
+        if all_ques[i].cno == 1:
+            res[all_ques[i].ques].append(all_ques[i].op1)
+        elif all_ques[i].cno == 2:
+            res[all_ques[i].ques].append(all_ques[i].op2)
+        elif all_ques[i].cno == 1:
+            res[all_ques[i].ques].append(all_ques[i].op3)
+        else:
+            res[all_ques[i].ques].append(all_ques[i].op4)
+    return render_template('Results.html',res=res)
 
 @app.route('/addques', methods=['POST'])
 def addques():

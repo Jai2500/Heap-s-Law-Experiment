@@ -120,11 +120,17 @@
 					<div class="col-md-10 lab-list-col-10">
 
 						<!--edit -->
-						<h1 class="text-h2-lightblue" style="margin: 0.5px 0.5px">Quiz</h1>
-						<div class="content" id="experiment-article-section-6-content">
-							<form action='{{ url_for ("check")}}' method="POST" id="quiz_ques">
-								<!-- ADD QUESTIONS USING AJAX -->
-							</form>
+						<h1 class="text-h2-lightblue" style="margin: 0.5px 0.5px">Quiz Results</h1>
+						<div class="content" id="experiment-article-section-6-content quiz_result">
+							{% for key in res %}
+							<h3>{{key}}</h3>
+								{%- if res[key][0] == True -%}
+									<p style="color: green; font-size: 19px" class="correct_ans"> You Answered Correct : {{ res[key][1] }}</p>
+								{%- else -%}
+									<p style="color: red;  font-size: 19px"> You Answered Incorrectly, here is the correct one : {{ res[key][1] }}</p>
+								{%- endif -%}
+							{% endfor %}
+							<h4 style="margin: 14px 0px;" id='output'></h4>
 						</div>
 					</div>
 				</div>
@@ -256,30 +262,11 @@
 		});
 	});
 </script>
+
 <script>
 	$(document).ready(function () {
-
-		// Loading the questions on the load from the SQLAlchemy - Flask database
-		$.ajax({
-			url: '{{ url_for("getques") }}',
-			type: 'GET',
-			dataType: 'json',
-			success: function (data) {
-				console.log(data);
-				console.log('This works... I guess');
-				var all_ques = []
-				data = $.parseJSON(data);
-				for (i in data) {
-					console.log(data[i]['ques']);
-					$('#quiz_ques').append('<h4>' + data[i]['ques'] + '</h4>');
-					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="1" checked>  ' + data[i]['op1'] + ' </br> ');
-					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="2">  ' + data[i]['op2'] + ' </br> ');
-					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="3">  ' + data[i]['op3'] + ' </br> ');
-					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="4">  ' + data[i]['op4'] + ' </br> ');
-				}
-				$('#quiz_ques').append('<input type="submit" style="margin: 15px 4px; padding: 4px 4px;">');
-			}
-		});
+		var c = $('.correct_ans').length;
+		$('#output').append("You answered " + c + " questions correctly");
 	});
 </script>
 
