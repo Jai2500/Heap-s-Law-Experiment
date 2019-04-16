@@ -97,9 +97,10 @@
 			<!-- =================================================================================================================================== -->
 			<div class="container-fluid" style="margin-left: 35px; margin-right: 35px;">
 				<h2 class="text-h2-lightblue" style=" margin-bottom: 20px; margin-top: 10px; "><a
-						href="http://vlab.co.in/ba_labs_all.php?id=7" class="sidebar-a">Civil Engineering</a> &rarr;<a
-						href="../Introduction.html" class="sidebar-a">Structural Analysis Lab</a>&nbsp&rarr;<a
-						href="../List of experiments.html" class="sidebar-a">List Of Experiments</a><br /></h2>
+						href="http://vlab.co.in/broad-area-computer-science-and-engineering" class="sidebar-a">Computer
+						Science and Engineering</a> &rarr;<a href="http://cl-iiith.vlabs.ac.in/"
+						class="sidebar-a">Computational Linguistics Lab</a>&nbsp&rarr;<a href="{{url_for('intro')}}"
+						class="sidebar-a">Heap's Law</a><br /></h2>
 
 				<div class="row">
 					<div class="col-md-2 sidebar-col-2">
@@ -124,11 +125,13 @@
 						<div class="content" id="experiment-article-section-6-content quiz_result">
 							{% for key in res %}
 							<h3>{{key}}</h3>
-								{%- if res[key][0] == True -%}
-									<p style="color: green; font-size: 19px" class="correct_ans"> You Answered Correct : {{ res[key][1] }}</p>
-								{%- else -%}
-									<p style="color: red;  font-size: 19px"> You Answered Incorrectly, here is the correct one : {{ res[key][1] }}</p>
-								{%- endif -%}
+							{%- if res[key][0] == True -%}
+							<p style="color: green; font-size: 19px" class="correct_ans"> You Answered Correct :
+								{{ res[key][1] }}</p>
+							{%- else -%}
+							<p style="color: red;  font-size: 19px"> You Answered Incorrectly, here is the correct one :
+								{{ res[key][1] }}</p>
+							{%- endif -%}
 							{% endfor %}
 							<h4 style="margin: 14px 0px;" id='output'></h4>
 						</div>

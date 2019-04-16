@@ -96,10 +96,8 @@
 
 			<!-- =================================================================================================================================== -->
 			<div class="container-fluid" style="margin-left: 35px; margin-right: 35px;">
-				<h2 class="text-h2-lightblue" style=" margin-bottom: 20px; margin-top: 10px; "><a
-						href="http://vlab.co.in/ba_labs_all.php?id=7" class="sidebar-a">Civil Engineering</a> &rarr;<a
-						href="../Introduction.html" class="sidebar-a">Structural Analysis Lab</a>&nbsp&rarr;<a
-						href="../List of experiments.html" class="sidebar-a">List Of Experiments</a><br /></h2>
+					<h2 class="text-h2-lightblue" style=" margin-bottom: 20px; margin-top: 10px; "><a href="http://vlab.co.in/broad-area-computer-science-and-engineering" class="sidebar-a" >Computer Science and Engineering</a> &rarr;<a href="http://cl-iiith.vlabs.ac.in/" class="sidebar-a" >Computational Linguistics Lab</a>&nbsp&rarr;<a href="{{url_for('intro')}}" class="sidebar-a" >Heap's Law</a><br/></h2>					
+
 
 				<div class="row">
 					<div class="col-md-2 sidebar-col-2">
@@ -265,12 +263,12 @@
 			type: 'GET',
 			dataType: 'json',
 			success: function (data) {
-				console.log(data);
-				console.log('This works... I guess');
+				// console.log(data);
+				// console.log('This works... I guess');
 				var all_ques = []
 				data = $.parseJSON(data);
 				for (i in data) {
-					console.log(data[i]['ques']);
+					// console.log(data[i]['ques']);
 					$('#quiz_ques').append('<h4>' + (parseInt(i) + 1) +  ". " + data[i]['ques'] + '</h4>');
 					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="1" checked>  ' + data[i]['op1'] + ' </br> ');
 					$('#quiz_ques').append('<input type="radio" name="ans' + i  + '" value="2">  ' + data[i]['op2'] + ' </br> ');
