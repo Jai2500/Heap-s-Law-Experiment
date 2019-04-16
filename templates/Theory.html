@@ -98,17 +98,22 @@
 						<div class="col-md-10 lab-list-col-10">
 							
 							<!--edit -->
-<h1 class="text-h2-lightblue">Rigid Joints</h1><div class="content" id="experiment-article-section-2-content">
+<h1 class="text-h2-lightblue">Theory</h1><div class="content" id="experiment-article-section-2-content">
 <p align="justify">
-<strong> Types of Joints</strong><br>
-All the structural members in framed buildings or trusses must be adequately connected together so that the applied loads are transferred safely to the ground surface. The types of connection or joints are basically divided into two: stiff and pinned joint.<br><br>
-<strong>Stiff Joint</strong></br>
-This type of joint considered to have fixity at the point of connection and is rigid as it is sometimes called a rigid joint. The feature is that the flexure of one member meets at the joint has an effect on the other members. If it is perfectly stiff, then the angle between the members remains unaltered while rotation takes place.<br><br>
-<strong>Pinned Joint</strong><br>
-It is sometimes called a hinged joint. As an example, many roof trusses and bridges are constructed using the pinned joint principles. These joints allow relative movement of the members and they cannot resist bending moments, unlike in stiff joints. Nowadays bolting and riveting are more common used, although the members cannot move relatively to one another, at some degree of rotation were allowed in practice. This is due to to the elasticity of the system and deformations of the members are relatively very small as this the common practice of assuming all joints in a truss to be pinned.
-          </br></br></br></br></br></p>
+<strong> Heaps' Law</strong><br>
+The relation between types and tokens can be explained by the <strong>Heaps' law</strong>	 (also called Herdan's law) which describes the number of distinct words in a document (types) as a function of the document length(tokens). It can be formulated as:<br><br>
+V = f(n) = Kn<sup>β</sup><br><br>
+where V = types<br><br>
+          n = tokens<br><br>
+          K and β are free parameters determined empirically<br><br>
+          The values of the parameters depend on the language and with English text corpora, typically K is between 10 and 100, and β is between 0.4 and 0.6.<br><br>
+          Applying logarithmics to both sides of the equation, we get:
+<br><br>
+logV = logK +βlogn<br><br>
+Which is an equation of a straight line with intercept logK and slope β. Heap's Law implies that as we gather larger copora (more instances of tokens), the number of distinct types returned gets diminished as we exhaust the discovery of full vocabulary. <br><br>
+</p>
 <p>
-<a href="Exp-1 Rigid joint.pdf" target="_blank">Read More</a>
+<!-- <a href="Exp-1 Rigid joint.pdf" target="_blank">Read More</a> -->
 </p>
 </div>						</div>
 					</div>
