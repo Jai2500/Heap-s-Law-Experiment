@@ -110,7 +110,7 @@ def addques():
 @app.route('/getimg', methods=['GET'])
 def getimg():
     img = imgs.query.all()
-    a  = []
+    a = []
     for i in img:
         s = {
             'name': i.name,
@@ -135,13 +135,15 @@ def addimg():
     }
     return jsonify(b)
 
+# Just an utility route to delete some particular entry from the database
 @app.route('/del')
 def delete():
     db.create_all()
-    req = questions.query.filter_by(ques="Estitmate the number of distinct terms in a text document: <br> Given k=10^1.64,b=0.49 and n=1000020{tokens}").first()
+    req = questions.query.filter_by(
+        ques="Estitmate the number of distinct terms in a text document: <br> Given k=10^1.64,b=0.49 and n=1000020{tokens}").first()
     db.session.delete(req)
     db.session.commit()
-    a = {'stat' : True}
+    a = {'stat': True}
     a = json.dumps(a)
     return jsonify(a)
 
