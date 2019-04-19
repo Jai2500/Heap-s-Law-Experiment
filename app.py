@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 
 
 class questions(db.Model):
+    """The database model for storing questions"""
     id = db.Column(db.Integer, primary_key=True, auto_increment="True")
     ques = db.Column(db.String(500), nullable=False)
     cno = db.Column(db.Integer, nullable=False)
@@ -29,6 +30,7 @@ class questions(db.Model):
 
 
 class imgs(db.Model):
+    """The database model for storing image links"""
     id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     name = db.Column(db.String(200), nullable=False)
     link = db.Column(db.String(500), nullable=False)
@@ -40,6 +42,10 @@ class imgs(db.Model):
 
 @app.route('/getques', methods=['GET'])
 def getques():
+    """
+        Parameters : None
+        Returns : All the questions stored in the database as a JSON Object
+    """
     db.create_all()
     all_ques = questions.query.all()
     a = []
@@ -59,6 +65,10 @@ def getques():
 
 @app.route('/checkans', methods=['GET', 'POST'])
 def check():
+    """
+        Parameters : Gets the Users input of the MCQ's
+        Returns : The questions, the corresponding correct answers, and the result of the quiz per question as a python dictionary for Jinja templating
+    """
     db.create_all()
     all_ques = questions.query.all()
     ans = []
@@ -84,6 +94,10 @@ def check():
 
 @app.route('/addques', methods=['POST'])
 def addques():
+    """
+        Parameters : Gets the inputs for adding a question to the database
+        Returns : The final added question as a JSON Object
+    """
     ques = request.form['ques']
     cno = int(request.form['cno'])
     op1 = request.form['op1']
@@ -109,6 +123,10 @@ def addques():
 
 @app.route('/getimg', methods=['GET'])
 def getimg():
+    """
+        Parameters : None
+        Returns : All the image links stored in the database as a JSON Object
+    """
     img = imgs.query.all()
     a = []
     for i in img:
@@ -123,6 +141,10 @@ def getimg():
 
 @app.route('/addimg', methods=['POST'])
 def addimg():
+    """
+        Parameters : The image links for adding into the database
+        Returns : The added image link as a JSON Object
+    """
     name = request.form['name']
     link = request.form['link']
     db.create_all()
@@ -138,6 +160,10 @@ def addimg():
 # Just an utility route to delete some particular entry from the database
 @app.route('/del')
 def delete():
+    """
+        Parameters : The question to be deleted
+        Returns : The status code of deletion
+    """
     db.create_all()
     req = questions.query.filter_by(
         ques="Estitmate the number of distinct terms in a text document: <br> Given k=10^1.64,b=0.49 and n=1000020{tokens}").first()
@@ -150,36 +176,43 @@ def delete():
 
 @app.route('/')
 def intro():
+    """Renders the Introduction page"""
     return render_template('Intro.html', name=None)
 
 
 @app.route('/Introduction')
 def intro2():
+    """Renders the Introduction page"""
     return intro()
 
 
 @app.route('/Theory')
 def theory():
+    """Renders the Theory page"""
     return render_template('Theory.html')
 
 
 @app.route('/Objective')
 def objective():
+    """Renders the Objective page"""
     return render_template('Objective.html')
 
 
 @app.route('/Experiment')
 def experiment():
+    """Renders the Experiment page"""
     return render_template('Experiment.html')
 
 
 @app.route('/Procedure')
 def procedure():
+    """Renders the Procedure page"""
     return render_template('Procedure.html')
 
 
 @app.route('/Quiz', methods=['POST', 'GET'])
 def quiz():
+    """Renders the Quiz page"""
     return render_template('Quizzes.html')
 
 
